@@ -172,3 +172,33 @@ class VendingMachine(SM):
 
     def getNextState(self, state, inp):
         return self.getNextValues(state, inp)[0]
+
+def main():
+    vm = VendingMachine()
+    print("==================================================================================")
+    print("vending machine outputs")
+    inputs_a = ['quarter', 'quarter', 'quarter']
+    print("Scenario (a): User inputs three quarters.")
+    for inp in inputs_a:
+        next_state, message = vm.getNextValues(vm.startState, inp)
+        print(message)
+        vm.startState = next_state
+
+    vm = VendingMachine()
+    inputs_b = ['quarter', 'cancel']
+    print("\nScenario (b): User inputs one quarter and then cancels the transaction.")
+    for inp in inputs_b:
+        next_state, message = vm.getNextValues(vm.startState, inp)
+        print(message)
+        vm.startState = next_state
+
+    vm = VendingMachine()
+    inputs_c = ['dime', 'dollar']
+    print("\nScenario (c): User inputs a dime and a dollar bill.")
+    for inp in inputs_c:
+        next_state, message = vm.getNextValues(vm.startState, inp)
+        print(message)
+        vm.startState = next_state
+
+if __name__ == "__main__":
+    main()
