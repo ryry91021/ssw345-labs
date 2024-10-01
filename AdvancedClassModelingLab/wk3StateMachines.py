@@ -141,3 +141,34 @@ gateInput = [
     ('bottom', True, False)
 ]
 print(f"{gate.transduce(gateInput)}")
+
+class VendingMachine(SM):
+    startState = {'total': 0, 'status': 'waiting_for_money'}
+
+    def getNextValues(self, state, inp):
+        currentTotal = state['total']
+        status = state['status']
+
+        if inp == 'cancel':
+            nextState = {'total': 0, 'status': 'waiting_for_money'}
+            return (nextState, f"Transaction canceled. Returning ${currentTotal / 100:.2f}")
+
+        if inp == 'dollar':
+            currentTotal += 100
+        elif inp == 'quarter':
+            currentTotal += 25
+        elif inp == 'dime':
+            currentTotal += 10
+        elif inp == 'nickel':
+            currentTotal += 5
+
+        if currentTotal >= 75:
+            change = currentTotal - 75
+            nextState = {'total': 0, 'status': 'waiting_for_money'}
+            return (nextState, f"Drink dispensed. Returning change: ${change / 100:.2f}")
+        else:
+            nextState = {'total': currentTotal, 'status': 'waiting_for_money'}
+            return (nextState, f"Inserted ${currentTotal / 100:.2f}. Need ${0.75 - currentTotal / 100:.2f} more.")
+
+    def getNextState(self, state, inp):
+        return self.getNextValues(state, inp)[0]
