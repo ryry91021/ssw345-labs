@@ -1,4 +1,6 @@
 package PartialAbstractFactory;
 
-public abstract class Cheese {
+public interface Cheese {
+    public String toString(){
+    }
 }
