@@ -1,4 +1,8 @@
 package PartialAbstractFactory;
 
-public class FrozenClams extends Clams{
+public class FrozenClams implements Clams{
+    @Override
+    public String toString(){
+        return "Frozen Clams";
+    }
 }

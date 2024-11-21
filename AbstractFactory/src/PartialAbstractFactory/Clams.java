@@ -1,4 +1,5 @@
 package PartialAbstractFactory;
 
-public abstract class Clams {
+public interface Clams {
+    String toString();
 }

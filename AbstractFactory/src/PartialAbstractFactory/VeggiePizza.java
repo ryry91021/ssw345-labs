@@ -1,12 +1,18 @@
 package PartialAbstractFactory;
 
-public class VeggiePizza extends Pizza{
-    public VeggiePizza(NYPizzaIngredientFactory ingredientFactory) {
-        super();
+public class VeggiePizza extends Pizza {
+    private PizzaIngredientFactory ingredientFactory;
+
+    public VeggiePizza(PizzaIngredientFactory ingredientFactory) {
+        this.ingredientFactory = ingredientFactory;
     }
 
     @Override
     void prepare() {
-        //TODO
+        System.out.println("Preparing " + name);
+        dough = ingredientFactory.createDough();
+        sauce = ingredientFactory.createSauce();
+        cheese = ingredientFactory.createCheese();
+        veggies = ingredientFactory.createVeggies();
     }
 }
