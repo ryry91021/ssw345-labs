@@ -1,6 +1,6 @@
 package PartialAbstractFactory;
 
 public interface Cheese {
-    public String toString(){
-    }
+    public String toString();
+    
 }
